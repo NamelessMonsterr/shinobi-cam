@@ -14,8 +14,8 @@ python -m http.server 8000
 # open http://localhost:8000 and click "Start Shinobi Cam"
 ```
 
-Everything is local: the hand/face models and runtime are vendored
-(``, ``). No CDN, no API keys, no build step.
+The hand/face models and WASM runtime load from the official MediaPipe CDNs (jsDelivr + Google Cloud Storage), so there is nothing to download.
+No API keys, no build step.
 
 ## The jutsu list (all in `jutsu.js`, extend by adding an entry)
 
@@ -53,4 +53,4 @@ tracker, so hold each seal about half a second, hands inside the frame.
 ## Stack
 
 Vanilla JS (ES modules) + MediaPipe Tasks Vision (HandLandmarker, FaceLandmarker,
-vendored WASM) + Canvas 2D + a small WebGL shader for the Kamui swirl.
+WASM runtime via CDN) + Canvas 2D + a small WebGL shader for the Kamui swirl.
