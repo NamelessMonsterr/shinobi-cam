@@ -1,17 +1,17 @@
-// tracker.js — MediaPipe HandLandmarker + FaceLandmarker setup (vendored, offline-capable).
+// tracker.js — MediaPipe HandLandmarker + FaceLandmarker; models + wasm loaded from official CDNs.
 import { FilesetResolver, HandLandmarker, FaceLandmarker } from './vision_bundle.mjs';
 
 export async function createTrackers(){
-  const fileset = await FilesetResolver.forVisionTasks('./');
+  const fileset = await FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
   const hand = await HandLandmarker.createFromOptions(fileset, {
-    baseOptions: { modelAssetPath: './hand_landmarker.task', delegate: 'GPU' },
+    baseOptions: { modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task', delegate: 'GPU' },
     runningMode: 'VIDEO', numHands: 2,
     minHandDetectionConfidence: 0.4, minHandPresenceConfidence: 0.4, minTrackingConfidence: 0.4,
   });
   let face = null;
   try {
     face = await FaceLandmarker.createFromOptions(fileset, {
-      baseOptions: { modelAssetPath: './face_landmarker.task', delegate: 'GPU' },
+      baseOptions: { modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task', delegate: 'GPU' },
       runningMode: 'VIDEO', numFaces: 1, outputFaceBlendshapes: false, outputFacialTransformationMatrixes: false,
     });
   } catch(e){ console.warn('Face landmarker unavailable:', e); }
