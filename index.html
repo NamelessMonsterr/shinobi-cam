@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shinobi — hand sign recognition</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <video id="cam" playsinline muted style="transform: scaleX(-1);"></video>
+  <canvas id="gl"></canvas>
+  <canvas id="fx"></canvas>
+</div>
+<button id="start">▶ Start Shinobi Cam</button>
+<div id="status">Loading...</div>
+<label id="soundwrap"><input type="checkbox" id="sound" checked> Sound</label>
+<input type="file" id="testfile" accept="video/*" style="display:none">
+<script type="module" src="main.js"></script>
+</body>
+</html>
